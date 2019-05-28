@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Laravel-admin',
+    'name' => '昌田农业-admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Laravel</b> admin',
+    'logo' => '<b>昌田农业</b> 后台',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>昌田</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -243,7 +243,7 @@ return [
     | Supported: "tencent", "google", "yandex".
     |
     */
-    'map_provider' => 'google',
+    'map_provider' => 'tencent',
 
     /*
     |--------------------------------------------------------------------------
@@ -273,7 +273,7 @@ return [
     | "sidebar-mini".
     |
     */
-    'layout' => ['sidebar-mini', 'sidebar-collapse'],
+    'layout' => ['sidebar-mini',],
 
     /*
     |--------------------------------------------------------------------------
