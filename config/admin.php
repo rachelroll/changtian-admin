@@ -22,7 +22,8 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>昌田农业</b> 后台',
+    'logo' => '<b>test</b> 后台',
+    //'logo' => '<b>昌田农业</b> 后台',
 
     /*
     |--------------------------------------------------------------------------
@@ -351,6 +352,9 @@ return [
     |
     */
     'extensions' => [
-
+        'light-box' => [
+            // Set to `false` if you want to disable this extension
+            'enable' => true,
+        ]
     ],
 ];

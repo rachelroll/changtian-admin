@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class GoodController extends Controller
+class GoodsController extends Controller
 {
     use HasResourceActions;
 
@@ -89,6 +89,7 @@ class GoodController extends Controller
         $grid->shipping_place('Shipping place');
         $grid->price('Price');
         $grid->pictures('Pictures');
+        //$grid->picture()->lightbox();
         $grid->category_id('Category id');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
