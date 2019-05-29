@@ -84,9 +84,10 @@ class CategoryController extends Controller
         $grid->id('Id');
         $grid->name('Name');
         $grid->icon('Icon');
-        $grid->order('Order');
+        $grid->order('Order')->orderable();
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
+        $grid->model()->orderBy('order','ASC');
 
         return $grid;
     }
@@ -119,10 +120,9 @@ class CategoryController extends Controller
     protected function form()
     {
         $form = new Form(new Category);
-
         $form->text('name', 'Name');
         $form->text('icon', 'Icon');
-        $form->number('order', 'Order');
+        //$form->number('order', 'Order');
 
         return $form;
     }

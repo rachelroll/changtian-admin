@@ -11,9 +11,10 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->resource('goods', GoodController::class);
+    $router->resource('goods', GoodsController::class);
     $router->resource('categories', CategoryController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('order-items', OrderItemController::class);
+    $router->get('api/upload', 'UploadController@upload')->name('admin.api.upload.upload');
 });
 

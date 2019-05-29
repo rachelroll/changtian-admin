@@ -9,12 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "airan/alioss-form": "^1.1",
         "encore/laravel-admin": "^1.6",
         "fideloper/proxy": "^4.0",
+        "jacobcyl/ali-oss-storage": "^2.1",
+        "jxlwqq/simditor": "^1.0",
         "laravel-admin-ext/grid-lightbox": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "smallruraldog/light-box": "^1.0"
+        "smallruraldog/light-box": "^1.0",
+        "spatie/eloquent-sortable": "^3.6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -71,14 +71,14 @@ return [
             'access_key' => env('ACCESS_KEY',''),
             'bucket'     => env('BUCKET',''),
             'endpoint'   => env('END_POINT','http://oss-cn-beijing.aliyuncs.com'),
-            // OSS ÍâÍø½Úµã»ò×Ô¶¨ÒåÍâ²¿ÓòÃû
-            //'endpoint_internal' => '<internal endpoint [OSSÄÚÍø½Úµã] Èç£ºoss-cn-shenzhen-internal.aliyuncs.com>', // v2.0.4 ĞÂÔöÅäÖÃÊôĞÔ£¬Èç¹ûÎª¿Õ£¬ÔòÄ¬ÈÏÊ¹ÓÃ endpoint ÅäÖÃ(ÓÉÓÚÄÚÍøÉÏ´«ÓĞµãĞ¡ÎÊÌâÎ´½â¾ö£¬Çë´ó¼ÒÔİÊ±²»ÒªÊ¹ÓÃÄÚÍø½ÚµãÉÏ´«£¬ÕıÔÚÓë°¢Àï¼¼Êõ¹µÍ¨ÖĞ)
+            // OSS å¤–ç½‘èŠ‚ç‚¹æˆ–è‡ªå®šä¹‰å¤–éƒ¨åŸŸå
+            //'endpoint_internal' => '<internal endpoint [OSSå†…ç½‘èŠ‚ç‚¹] å¦‚ï¼šoss-cn-shenzhen-internal.aliyuncs.com>', // v2.0.4 æ–°å¢é…ç½®å±æ€§ï¼Œå¦‚æœä¸ºç©ºï¼Œåˆ™é»˜è®¤ä½¿ç”¨ endpoint é…ç½®(ç”±äºå†…ç½‘ä¸Šä¼ æœ‰ç‚¹å°é—®é¢˜æœªè§£å†³ï¼Œè¯·å¤§å®¶æš‚æ—¶ä¸è¦ä½¿ç”¨å†…ç½‘èŠ‚ç‚¹ä¸Šä¼ ï¼Œæ­£åœ¨ä¸é˜¿é‡ŒæŠ€æœ¯æ²Ÿé€šä¸­)
             'cdnDomain'   => env('CDN_DOMAIN','//oss-cn-beijing.aliyuncs.com'),
-            // Èç¹ûisCNameÎªtrue, getUrl»áÅĞ¶ÏcdnDomainÊÇ·ñÉè¶¨À´¾ö¶¨·µ»ØµÄurl£¬Èç¹ûcdnDomainÎ´ÉèÖÃ£¬ÔòÊ¹ÓÃendpointÀ´Éú³Éurl£¬·ñÔòÊ¹ÓÃcdn
+            // å¦‚æœisCNameä¸ºtrue, getUrlä¼šåˆ¤æ–­cdnDomainæ˜¯å¦è®¾å®šæ¥å†³å®šè¿”å›çš„urlï¼Œå¦‚æœcdnDomainæœªè®¾ç½®ï¼Œåˆ™ä½¿ç”¨endpointæ¥ç”Ÿæˆurlï¼Œå¦åˆ™ä½¿ç”¨cdn
             'ssl'        => false,
             // true to use 'https://' and false to use 'http://'. default is false,
             'isCName'    => true,
-            // ÊÇ·ñÊ¹ÓÃ×Ô¶¨ÒåÓòÃû,true: ÔòStorage.url()»áÊ¹ÓÃ×Ô¶¨ÒåµÄcdn»òÓòÃûÉú³ÉÎÄ¼şurl£¬ false: ÔòÊ¹ÓÃÍâ²¿½ÚµãÉú³Éurl
+            // æ˜¯å¦ä½¿ç”¨è‡ªå®šä¹‰åŸŸå,true: åˆ™Storage.url()ä¼šä½¿ç”¨è‡ªå®šä¹‰çš„cdnæˆ–åŸŸåç”Ÿæˆæ–‡ä»¶urlï¼Œ false: åˆ™ä½¿ç”¨å¤–éƒ¨èŠ‚ç‚¹ç”Ÿæˆurl
             'debug'      => false,
         ],
 
