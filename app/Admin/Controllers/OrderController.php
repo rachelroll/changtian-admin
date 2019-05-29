@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Category;
+use App\Order;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class CategoryController extends Controller
+class OrderController extends Controller
 {
     use HasResourceActions;
 
@@ -79,12 +79,14 @@ class CategoryController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Category);
+        $grid = new Grid(new Order);
 
         $grid->id('Id');
-        $grid->name('Name');
-        $grid->icon('Icon');
-        $grid->order('Order');
+        $grid->amount('Amount');
+        $grid->username('Username');
+        $grid->contact('Contact');
+        $grid->address('Address');
+        $grid->comments('Comments');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -99,12 +101,14 @@ class CategoryController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Category::findOrFail($id));
+        $show = new Show(Order::findOrFail($id));
 
         $show->id('Id');
-        $show->name('Name');
-        $show->icon('Icon');
-        $show->order('Order');
+        $show->amount('Amount');
+        $show->username('Username');
+        $show->contact('Contact');
+        $show->address('Address');
+        $show->comments('Comments');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
@@ -118,11 +122,13 @@ class CategoryController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Category);
+        $form = new Form(new Order);
 
-        $form->text('name', 'Name');
-        $form->text('icon', 'Icon');
-        $form->number('order', 'Order');
+        $form->decimal('amount', 'Amount')->default(0.00);
+        $form->text('username', 'Username');
+        $form->text('contact', 'Contact');
+        $form->text('address', 'Address');
+        $form->text('comments', 'Comments');
 
         return $form;
     }
