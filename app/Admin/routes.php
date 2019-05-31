@@ -15,6 +15,6 @@ Route::group([
     $router->resource('categories', CategoryController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('order-items', OrderItemController::class);
-    $router->get('api/upload', 'UploadController@upload')->name('admin.api.upload.upload');
+
 });
 

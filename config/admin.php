@@ -356,13 +356,18 @@ return [
             // Set to `false` if you want to disable this extension
             'enable' => true,
         ],
+        'china-distpicker' => [
+
+            // 如果要关掉这个扩展，设置为false
+            'enable' => true,
+        ],
         'simditor' => [
             // Set to false if you want to disable this extension
             'enable' => true,
             // Editor configuration
             'config' => [
                 'upload' => [
-                    'url' => '/admin/api/upload', # example api route: admin/api/upload
+                    'url' => '/api/simditor/upload', # example api route: admin/api/upload
                     'fileKey' => 'upload_file',
                     'connectionCount' => 3,
                     'leaveConfirm' => 'Uploading is in progress, are you sure to leave this page?'

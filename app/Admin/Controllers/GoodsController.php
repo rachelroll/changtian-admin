@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Category;
+use App\ChinaArea;
 use App\Good;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
@@ -86,14 +87,13 @@ class GoodsController extends Controller
 
         $grid->id('Id');
         $grid->name('商品名称');
-        $grid->intro('商品简介');
         $grid->kind('品种');
         $grid->shipping_date('发货期限');
         $grid->shipping_place('发货地');
         $grid->price('单价');
-        $grid->pictures('商品图片');
-        //$grid->picture()->lightbox();
-        $grid->category_id('分类 ID');
+        //$grid->pictures('商品图片');
+        $grid->pictures('商品图片')->lightbox(['width' => 100]);
+        $grid->column('category.name');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -135,15 +135,22 @@ class GoodsController extends Controller
         $form = new Form(new Good);
 
         $form->text('name', '商品名称');
+        $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
         $form->simditor('intro', '商品简介');
         $form->text('kind', '品种');
-        $form->text('shipping_date', '发货期限');
-        $form->text('shipping_place', '发货地');
+        $form->text('shipping_date', '发货期限')->default('订单提交后2日内发货');
+        $form->distpicker(['province_id', 'city_id', 'district_id'],'发货地')->autoselect(3)->default([
+            'province' => 130000,
+            'city'     => 130200,
+            'district' => 130203,
+        ]);
         $form->currency('price','单价')->symbol('￥');
-        $form->multipleImage('picture', '商品图片');
+        $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张');
+        $form->saving(function (Form $form) {
+            $area = ChinaArea::with('city','province')->where('code', $form->district)->first();
+            $form->model()->shipping_place = $area->province->name . '-' . $area->city->name . '-' .$area->name;
 
-        $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
-
+        });
 
         return $form;
     }
