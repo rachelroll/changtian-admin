@@ -82,11 +82,12 @@ class CategoryController extends Controller
         $grid = new Grid(new Category);
 
         $grid->id('Id');
-        $grid->name('Name');
-        $grid->icon('Icon');
-        $grid->order('Order')->orderable();
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->name('名称');
+        //$grid->icon('Icon');
+        $grid->icon('图标')->lightbox(['width' => 100]);
+        $grid->order('排序')->orderable();
+        $grid->created_at('创建时间');
+        $grid->updated_at('更新时间');
         $grid->model()->orderBy('order','ASC');
 
         return $grid;
@@ -106,8 +107,8 @@ class CategoryController extends Controller
         $show->name('Name');
         $show->icon('Icon');
         $show->order('Order');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->created_at('创建时间');
+        $show->updated_at('更新时间');
 
         return $show;
     }

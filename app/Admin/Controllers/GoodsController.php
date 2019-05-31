@@ -85,17 +85,30 @@ class GoodsController extends Controller
     {
         $grid = new Grid(new Good);
 
+        $grid->filter(function ($filter) {
+            //展开过滤
+            $filter->expand();
+            // 去掉默认的id过滤器
+
+            // 在这里添加字段过滤器
+            $filter->like('name', '商品名称');
+            $filter->like('kind', '品种');
+        });
+
+
         $grid->id('Id');
-        $grid->name('商品名称');
-        $grid->kind('品种');
-        $grid->shipping_date('发货期限');
+        $grid->name('商品名称')->editable();
+        $grid->kind('品种')->editable();
+        $grid->shipping_date('发货期限')->editable();
         $grid->shipping_place('发货地');
-        $grid->price('单价');
+        $grid->price('单价')->editable();
         //$grid->pictures('商品图片');
         $grid->pictures('商品图片')->lightbox(['width' => 100]);
-        $grid->column('category.name');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->column('category.name' ,'分类');
+        $grid->created_at('创建时间');
+        $grid->updated_at('更新时间');
+
+
 
         return $grid;
     }
@@ -119,8 +132,8 @@ class GoodsController extends Controller
         $show->price('单价');
         $show->pictures('商品图片');
         $show->category_id('分类 ID');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->created_at('创建时间');
+        $show->updated_at('更新时间');
 
         return $show;
     }
@@ -147,7 +160,7 @@ class GoodsController extends Controller
         $form->currency('price','单价')->symbol('￥');
         $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张');
         $form->saving(function (Form $form) {
-            $area = ChinaArea::with('city','province')->where('code', $form->district)->first();
+            $area = ChinaArea::with('city','province')->where('code', $form->district_id)->first();
             $form->model()->shipping_place = $area->province->name . '-' . $area->city->name . '-' .$area->name;
 
         });

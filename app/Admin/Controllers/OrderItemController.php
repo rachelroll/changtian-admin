@@ -86,8 +86,8 @@ class OrderItemController extends Controller
         $grid->name('Name');
         $grid->price('Price');
         $grid->quantity('Quantity');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->created_at('创建时间');
+        $grid->updated_at('更新时间');
         $grid->good_id('Good id');
 
         return $grid;
@@ -108,8 +108,8 @@ class OrderItemController extends Controller
         $show->name('Name');
         $show->price('Price');
         $show->quantity('Quantity');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->created_at('创建时间');
+        $show->updated_at('更新时间');
         $show->good_id('Good id');
 
         return $show;

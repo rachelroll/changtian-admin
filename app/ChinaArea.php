@@ -10,12 +10,12 @@ class ChinaArea extends Model
 
     public function city()
     {
-        return $this->belongsTo(__CLASS__::class,'parent_id','id');
+        return $this->belongsTo(__CLASS__,'parent_id','id');
     }
 
     public function province()
     {
-        return $this->belongsTo(__CLASS__::class,'parent_id','id');
+        return $this->belongsTo(__CLASS__,'parent_id','id');
     }
 
 }

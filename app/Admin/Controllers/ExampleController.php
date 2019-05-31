@@ -81,8 +81,8 @@ class ExampleController extends Controller
         $grid = new Grid(new YourModel);
 
         $grid->id('ID')->sortable();
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->created_at('创建时间');
+        $grid->updated_at('更新时间');
 
         return $grid;
     }
@@ -98,8 +98,8 @@ class ExampleController extends Controller
         $show = new Show(YourModel::findOrFail($id));
 
         $show->id('ID');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+        $show->created_at('创建时间');
+        $show->updated_at('更新时间');
 
         return $show;
     }
@@ -114,8 +114,8 @@ class ExampleController extends Controller
         $form = new Form(new YourModel);
 
         $form->display('id', 'ID');
-        $form->display('created_at', 'Created At');
-        $form->display('updated_at', 'Updated At');
+        $form->display('created_at', '创建时间');
+        $form->display('updated_at', '更新时间');
 
         return $form;
     }
