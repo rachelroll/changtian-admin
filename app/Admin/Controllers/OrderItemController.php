@@ -86,8 +86,20 @@ class OrderItemController extends Controller
         $grid->name('Name');
         $grid->price('Price');
         $grid->quantity('Quantity');
-        $grid->created_at('创建时间');
-        $grid->updated_at('更新时间');
+        $grid->column('source_attribute','溯源信息')->display(function($attribute) {
+            $str = NULL;
+            foreach (explode(PHP_EOL, $attribute) as $val) {
+                $str = $str . $val . '<br>';
+            }
+            return $str;
+        });
+        $grid->created_at('下单时间');
+        $grid->product_at('生产时间');
+        $grid->storage_at('入库时间');
+        $grid->out_storage_at('出库时间');
+        $grid->delivery_at('发货时间');
+        $grid->recept_at('收货时间');
+
         $grid->good_id('Good id');
 
         return $grid;
@@ -124,11 +136,18 @@ class OrderItemController extends Controller
     {
         $form = new Form(new OrderItem);
 
-        $form->number('order_id', 'Order id');
-        $form->text('name', 'Name');
-        $form->text('price', 'Price');
-        $form->number('quantity', 'Quantity');
-        $form->number('good_id', 'Good id');
+        $form->display('name', '产品名称');
+        $form->display('price', '价格');
+        $form->display('quantity', '数量');
+        $form->textarea('source_attribute', '溯源信息')->rows(8)->help('这里要注意换行');
+
+        $form->display('created_at','下单时间');
+        $form->date('product_at','生产时间');
+        $form->date('storage_at','入库时间');
+        $form->date('out_storage_at','出库时间');
+        $form->date('delivery_at','发货时间');
+        $form->date('recept_at','收货时间');
+
 
         return $form;
     }
