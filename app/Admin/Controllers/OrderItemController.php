@@ -82,10 +82,11 @@ class OrderItemController extends Controller
         $grid = new Grid(new OrderItem);
 
         $grid->id('Id');
-        $grid->order_id('Order id');
-        $grid->name('Name');
-        $grid->price('Price');
-        $grid->quantity('Quantity');
+        $grid->order_id('订单ID');
+        $grid->name('名称');
+        $grid->price('价格');
+        $grid->good_id('产品ID');
+        $grid->quantity('数量');
         $grid->column('source_attribute','溯源信息')->display(function($attribute) {
             $str = NULL;
             foreach (explode(PHP_EOL, $attribute) as $val) {
@@ -99,8 +100,6 @@ class OrderItemController extends Controller
         $grid->out_storage_at('出库时间');
         $grid->delivery_at('发货时间');
         $grid->recept_at('收货时间');
-
-        $grid->good_id('Good id');
 
         return $grid;
     }
