@@ -101,6 +101,13 @@ class OrderItemController extends Controller
         $grid->delivery_at('发货时间');
         $grid->recept_at('收货时间');
 
+        $grid->actions(function ($actions) use ($grid) {
+
+            // prepend一个操作
+            $actions->prepend('<a class="btn btn-sm"  target="_blank" href="'. route('order-item.source-code',['id'=>$actions->getKey()]) .'">溯源码</a>');
+
+        });
+
         return $grid;
     }
 

@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('admin.home'));
 });
+
+Route::get('order-item/source_code/{id}', 'OrderItemController@sourceCode')->name('order-item.source-code');
