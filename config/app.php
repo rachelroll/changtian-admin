@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'front_url' => env('FRONT_URL', 'https://changtian-api.oeaudio.com'),
 
     /*
     |--------------------------------------------------------------------------

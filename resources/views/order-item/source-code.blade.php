@@ -56,14 +56,22 @@
 <div class="border box">
     <div id="ddd">
         <div class="center font-24">{{ $orderItem->name }}</div>
-        <div>保鲜日期:2017-12-11</div>
-        <div>保鲜日期:2017-12-11</div>
+        <div class="left">
+            <div>保鲜日期:2017-12-11</div>
+            <div>保鲜日期:2017-12-11</div>
+        </div>
+
+        <div class="left" style="margin-left: 40px;">
+            <img width="80" src="{{ (new chillerlan\QRCode\QRCode)->render($url) }}" alt=""/>
+        </div>
+        <div class="clear"></div>
         <div class="box">
             <div class="left">溯源地:山东青岛</div>
             <div class="right font-24">净含量:8KG</div>
             <div class="clear"></div>
         </div>
-
+        
+        
         <div>供应商:宁夏昌田农业发展有限公司</div>
         <div>热线:400-666-8683</div>
     </div>
