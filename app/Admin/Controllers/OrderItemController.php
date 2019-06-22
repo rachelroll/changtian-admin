@@ -87,13 +87,18 @@ class OrderItemController extends Controller
         $grid->price('价格');
         $grid->good_id('产品ID');
         $grid->quantity('数量');
-        $grid->column('source_attribute','溯源信息')->display(function($attribute) {
-            $str = NULL;
-            foreach (explode(PHP_EOL, $attribute) as $val) {
-                $str = $str . $val . '<br>';
-            }
-            return $str;
-        });
+        $grid->net_weight('净重')->editable();
+        $grid->feature('特色')->editable();
+        $grid->fresh_time('保鲜期')->editable();
+        $grid->source_location('溯源地')->editable();
+        $grid->source_person('溯源人')->editable();
+        //$grid->column('source_attribute','溯源信息')->display(function($attribute) {
+        //    $str = NULL;
+        //    foreach (explode(PHP_EOL, $attribute) as $val) {
+        //        $str = $str . $val . '<br>';
+        //    }
+        //    return $str;
+        //});
         $grid->created_at('下单时间');
         $grid->product_at('生产时间');
         $grid->storage_at('入库时间');
@@ -145,7 +150,13 @@ class OrderItemController extends Controller
         $form->display('name', '产品名称');
         $form->display('price', '价格');
         $form->display('quantity', '数量');
-        $form->textarea('source_attribute', '溯源信息')->rows(8)->help('这里要注意换行');
+        //$form->textarea('source_attribute', '溯源信息')->rows(8)->help('这里要注意换行');
+
+        $form->text('net_weight','净重');
+        $form->text('feature','特色');
+        $form->text('fresh_time','保鲜期');
+        $form->text('source_location','溯源地');
+        $form->text('source_person','溯源人');
 
         $form->display('created_at','下单时间');
         $form->date('product_at','生产时间');

@@ -6,11 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script language="javascript" src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery-1.4.4.min.js"></script>
-    <script language="javascript" src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery-migrate-1.2.1.min.js"></script>
-    <script language="javascript" src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery.jqprint-0.3.js"></script>
+    <script language="javascript"
+            src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery-1.4.4.min.js"></script>
+    <script language="javascript"
+            src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script language="javascript"
+            src="https://jkwedu-new.oss-cn-beijing.aliyuncs.com/public-cdn/jquery/jquery.jqprint-0.3.js"></script>
     <script language="javascript">
-        function  a(){
+        function a() {
             $("#ddd").jqprint();
         }
     </script>
@@ -19,37 +22,43 @@
         .center {
             text-align: center;
         }
+
         .font-24 {
             font-size: 24px;
         }
+
         .box {
             width: 8cm;
         }
+
         .border {
             border: 1px solid red;
             padding: 2px;
         }
+
         .left {
             float: left;
         }
+
         .right {
             float: right;
         }
 
         /* clear float */
-            .clear:after {
-                display: block;
-                clear: both;
-                content: "";
-                visibility: hidden;
-                height: 0
-            }
+        .clear:after {
+            display: block;
+            clear: both;
+            content: "";
+            visibility: hidden;
+            height: 0
+        }
 
-            .clear {
-                zoom: 1
+        .clear {
+            zoom: 1
 
-            }
-            /* end clear float */
+        }
+
+        /* end clear float */
     </style>
 </head>
 <body>
@@ -57,21 +66,18 @@
     <div id="ddd">
         <div class="center font-24">{{ $orderItem->name }}</div>
         <div class="left">
-            <div>保鲜日期:2017-12-11</div>
-            <div>保鲜日期:2017-12-11</div>
+            <div>保鲜期: {{ $orderItem->fresh_time }}</div>
+            <div>特色: {{ $orderItem->feature }}</div>
         </div>
-
-        <div class="left" style="margin-left: 40px;">
-            <img width="80" src="{{ (new chillerlan\QRCode\QRCode)->render($url) }}" alt=""/>
+        <div class="right" style="margin-left: 40px;">
+            <img width="100" src="{{ (new chillerlan\QRCode\QRCode)->render($url) }}" alt=""/>
         </div>
-        <div class="clear"></div>
         <div class="box">
-            <div class="left">溯源地:山东青岛</div>
-            <div class="right font-24">净含量:8KG</div>
-            <div class="clear"></div>
+            <div>溯源地: {{ $orderItem->source_location }}</div>
+            <div>溯源人: {{ $orderItem->source_person }}</div>
         </div>
-        
-        
+        <div class=" font-24">净含量: {{ $orderItem->net_weight }}</div>
+
         <div>供应商:宁夏昌田农业发展有限公司</div>
         <div>热线:400-666-8683</div>
     </div>
