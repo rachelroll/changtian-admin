@@ -149,7 +149,7 @@ class GoodsController extends Controller
 
         $form->text('name', '商品名称');
         $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
-        $form->text('intro', '商品简介');
+        $form->textarea('intro', '商品简介');
         $form->text('kind', '品种');
         $form->text('shipping_date', '发货期限')->default('订单提交后2日内发货');
         $form->distpicker(['province_id', 'city_id', 'district_id'],'发货地')->autoselect(3)->default([

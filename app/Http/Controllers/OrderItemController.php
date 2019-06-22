@@ -12,7 +12,7 @@ class OrderItemController extends Controller
     public function sourceCode($id)
     {
         $orderItem = OrderItem::find($id);
-        $hashids = new Hashids('ross',6,'abcdefghijklmnopqrstuvwxyz');
+        $hashids = new Hashids('ross',10,'123456789ABCDEFGH');
         $url = config('app.front_url') . '/source-code/' . $hashids->encode($orderItem->id);
         dd($url,$orderItem->id,$hashids->decode('grdg'));
 
