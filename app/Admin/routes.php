@@ -15,6 +15,7 @@ Route::group([
     $router->resource('categories', CategoryController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('order-items', OrderItemController::class);
+    $router->get('order/update-status/{id}', 'OrderController@updateStatus')->name('admin.order.update-status');
 
 });
 

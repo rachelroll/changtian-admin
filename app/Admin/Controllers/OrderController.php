@@ -86,35 +86,46 @@ class OrderController extends Controller
             $filter->like('contact', '客户联系方式');
 
         });
+        $this->getColumn($grid);
+        $grid->actions(function ($actions) {
 
-        $grid->id('Id');
-        $grid->order_sn('订单编号');
-        $grid->amount('订单总金额')->sortable();
-        $grid->username('客户名字')->sortable();
 
-        $grid->contact('客户联系方式');
-        $grid->address('邮寄地址');
+            // prepend一个操作
+            $row = $actions->row;
+            switch ($row['status']) {
+                case Order::STATUS_PAID:
+                    $status = Order::STATUS_CONFIRM;
+                    $btn_name = '接单';
+                    break;
+                case Order::STATUS_CONFIRM:
+                    $status = Order::STATUS_SHIPPED;
+                    $btn_name = '发货';
+                    break;
+                case Order::STATUS_SHIPPED:
+                    $status = Order::STATUS_RECEIVED;
+                    $btn_name = '确认收货';
+                    break;
+                case Order::STATUS_RECEIVED:
+                    $status = Order::STATUS_FINISHED;
+                    $btn_name = '完成订单';
+                    break;
+                default:
+                    $status = $row['status'];
+                    $btn_name = '';
+                        break;
+            }
+            if ($btn_name) {
+                $actions->append('<a class="btn btn-xs btn-info" style="margin:8px;" href="' . route('admin.order.update-status',
+                        ['id' => $actions->getKey(),'status'=>$status]) . '">' . $btn_name . '</a>');
+            }
 
-        $grid->comments('备注');
-        $grid->column('orderItem', '详情')->display(function ($orderItem) {
-            $order = Order::with([
-                'orderItem' => function ($query) {
-                    $query->select('id as ID', 'order_id as order_id', 'name as 商品名称', 'price as 单价', 'quantity as 重量');
-                },
-            ])->find($this->id);
+            $actions->append('<a onclick="return confirm(\'确定取消订单?\')" style="margin:8px;" class="btn btn-xs btn-danger" href="' . route('admin.order.update-status',
+                    ['id' => $actions->getKey(),'status'=>Order::STATUS_CANCEL]) . '">取消订单</a>');
+            // prepend一个操作
+            $actions->append('<a class="btn btn-xs btn-success" style="margin:8px;" href="' . route('order-items.index',
+                    ['order_id' => $actions->getKey()]) . '">订单详情</a>');
 
-            return $order->orderItem->toArray();
-
-        })->table();
-        $grid->created_at('创建时间')->sortable();
-        $grid->updated_at('更新时间')->sortable();
-        //$grid->actions(function ($actions) {
-        //    // 当前行的数据数组
-        //    $actions->row;
-        //    // 获取当前行主键值
-        //    $actions->getKey();
-        //    $actions->prepend('<a href="">订单详情</a>');
-        //});
+        });
 
         $grid->model()->orderBy('id', 'DESC');
 
@@ -162,5 +173,43 @@ class OrderController extends Controller
         $form->text('comments', '备注');
 
         return $form;
+    }
+
+    /**
+     * @param Grid $grid
+     */
+    protected function getColumn(Grid $grid)
+    : void {
+        $grid->id('Id')->sortable();
+        $grid->order_sn('订单编号')->sortable();
+        $grid->amount('订单总金额')->sortable();
+        $grid->username('客户名字')->sortable();
+        $grid->contact('客户联系方式');
+        $grid->address('邮寄地址');
+
+        $grid->comments('备注');
+        $grid->column('orderItem', '详情')->display(function ($orderItem) {
+            $order = Order::with([
+                'orderItem' => function ($query) {
+                    $query->select('id as ID', 'order_id as order_id', 'name as 商品名称', 'price as 单价', 'quantity as 重量');
+                },
+            ])->find($this->id);
+
+            return $order->orderItem->toArray();
+
+        })->table();
+        $grid->status('订单状态')->using(Order::STATUS_NAME)->sortable();
+        $grid->created_at('创建时间')->sortable();
+        $grid->updated_at('更新时间')->sortable();
+    }
+
+    public function updateStatus($id)
+    {
+        $status = request('status');
+        $order = Order::where('id',$id)->update([
+            'status'=>$status
+        ]);
+        admin_toastr('提交成功', 'success');
+        return back();
     }
 }

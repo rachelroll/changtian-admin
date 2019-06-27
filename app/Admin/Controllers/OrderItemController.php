@@ -22,10 +22,11 @@ class OrderItemController extends Controller
      */
     public function index(Content $content)
     {
+        $order_id = request('order_id', 0);
         return $content
             ->header('Index')
             ->description('description')
-            ->body($this->grid());
+            ->body($this->grid($order_id));
     }
 
     /**
@@ -77,7 +78,7 @@ class OrderItemController extends Controller
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid($order_id = 0)
     {
         $grid = new Grid(new OrderItem);
 
@@ -112,6 +113,10 @@ class OrderItemController extends Controller
             $actions->prepend('<a class="btn btn-sm"  target="_blank" href="'. route('order-item.source-code',['id'=>$actions->getKey()]) .'">溯源码</a>');
 
         });
+
+        $grid->model()
+            ->where('order_id', $order_id);
+
 
         return $grid;
     }

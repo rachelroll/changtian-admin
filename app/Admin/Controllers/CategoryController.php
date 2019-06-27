@@ -121,9 +121,9 @@ class CategoryController extends Controller
     protected function form()
     {
         $form = new Form(new Category);
-        $form->text('name', 'Name');
-        $form->text('icon', 'Icon');
-        //$form->number('order', 'Order');
+        $form->text('name', '名称');
+        $form->image('icon','图标');
+        //$form->text('icon', '图标');
 
         return $form;
     }
