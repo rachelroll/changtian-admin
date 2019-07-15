@@ -9,8 +9,8 @@ class Order extends Model
     //订单状态
     const STATUS_WAIT_PAY = 0;  //待支付
     const STATUS_PAID = 1;  //已支付
-    const STATUS_CONFIRM = 2;  //已接单
-    const STATUS_SHIPPED = 3;  //已发货
+    const STATUS_CONFIRM = 2;  //已发货
+    const STATUS_SHIPPED = 3;  //已完成
     const STATUS_RECEIVED = 4;  //已确认收货
     const STATUS_FAILD = 98;  //支付失败
     const STATUS_FINISHED = 99;  //已完成
@@ -20,8 +20,8 @@ class Order extends Model
     const STATUS_NAME = [
         self::STATUS_WAIT_PAY => '待支付',
         self::STATUS_PAID     => '已支付',
-        self::STATUS_CONFIRM     => '已接单',
-        self::STATUS_SHIPPED     => '已发货',
+        self::STATUS_CONFIRM     => '已发货',
+        self::STATUS_SHIPPED     => '已完成',
         self::STATUS_RECEIVED     => '已确认收货',
         self::STATUS_FAILD    => '支付失败',
         self::STATUS_FINISHED => '已完成',

@@ -96,20 +96,20 @@ class OrderController extends Controller
             switch ($row['status']) {
                 case Order::STATUS_PAID:
                     $status = Order::STATUS_CONFIRM;
-                    $btn_name = '接单';
+                    $btn_name = '发货';
                     break;
                 case Order::STATUS_CONFIRM:
                     $status = Order::STATUS_SHIPPED;
-                    $btn_name = '发货';
+                    $btn_name = '完成';
                     break;
-                case Order::STATUS_SHIPPED:
-                    $status = Order::STATUS_RECEIVED;
-                    $btn_name = '确认收货';
-                    break;
-                case Order::STATUS_RECEIVED:
-                    $status = Order::STATUS_FINISHED;
-                    $btn_name = '完成订单';
-                    break;
+                //case Order::STATUS_SHIPPED:
+                //    $status = Order::STATUS_RECEIVED;
+                //    $btn_name = '确认收货';
+                //    break;
+                //case Order::STATUS_RECEIVED:
+                //    $status = Order::STATUS_FINISHED;
+                //    $btn_name = '完成订单';
+                //    break;
                 default:
                     $status = $row['status'];
                     $btn_name = '';
