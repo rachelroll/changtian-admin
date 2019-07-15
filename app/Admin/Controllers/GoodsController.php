@@ -99,11 +99,10 @@ class GoodsController extends Controller
         $grid->id('Id');
         $grid->name('商品名称')->editable();
         $grid->kind('品种')->editable();
-        $grid->size('规格')->editable();
-        $grid->shipping_date('发货期限')->editable();
+        $grid->size('规格与包装')->editable();
+        $grid->shipping_date('自由描述')->editable();
         $grid->shipping_place('发货地');
         $grid->price('单价')->editable();
-        //$grid->pictures('商品图片');
         $grid->pictures('商品图片')->lightbox(['width' => 100]);
         $grid->column('category.name' ,'分类');
         $grid->created_at('创建时间');
@@ -152,8 +151,8 @@ class GoodsController extends Controller
         $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
         $form->textarea('intro', '商品简介');
         $form->text('kind', '品种');
-        $form->text('size', '规格');
-        $form->text('shipping_date', '发货期限')->default('订单提交后2日内发货');
+        $form->text('size', '规格与包装');
+        $form->text('shipping_date', '最后一行自由描述')->default('订单提交后2日内发货');
         $form->text('shipping_place', '发货地');
         $form->file('video.fdMp4','视频');
         $form->currency('price','单价')->symbol('￥');
