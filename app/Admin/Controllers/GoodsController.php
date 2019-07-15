@@ -99,6 +99,7 @@ class GoodsController extends Controller
         $grid->id('Id');
         $grid->name('商品名称')->editable();
         $grid->kind('品种')->editable();
+        $grid->size('规格')->editable();
         $grid->shipping_date('发货期限')->editable();
         $grid->shipping_place('发货地');
         $grid->price('单价')->editable();
@@ -151,6 +152,7 @@ class GoodsController extends Controller
         $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
         $form->textarea('intro', '商品简介');
         $form->text('kind', '品种');
+        $form->text('size', '规格');
         $form->text('shipping_date', '发货期限')->default('订单提交后2日内发货');
         $form->distpicker(['province_id', 'city_id', 'district_id'],'发货地')->autoselect(3)->default([
             'province' => 130000,
@@ -161,7 +163,9 @@ class GoodsController extends Controller
         $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张');
         $form->saving(function (Form $form) {
             $area = ChinaArea::with('city','province')->where('code', $form->district_id)->first();
-            $form->model()->shipping_place = $area->province->name . '-' . $area->city->name . '-' .$area->name;
+            if ($area) {
+                $form->model()->shipping_place = $area->province->name . '-' . $area->city->name . '-' .$area->name;
+            }
 
         });
 
