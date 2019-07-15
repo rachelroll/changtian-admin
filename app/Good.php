@@ -23,4 +23,9 @@ class Good extends Model
     {
         return json_decode($pictures, true) ?: [];
     }
+
+    public function video()
+    {
+        return $this->belongsTo(Video::class,'videoId','id');
+    }
 }

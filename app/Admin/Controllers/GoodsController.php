@@ -154,20 +154,10 @@ class GoodsController extends Controller
         $form->text('kind', '品种');
         $form->text('size', '规格');
         $form->text('shipping_date', '发货期限')->default('订单提交后2日内发货');
-        $form->distpicker(['province_id', 'city_id', 'district_id'],'发货地')->autoselect(3)->default([
-            'province' => 130000,
-            'city'     => 130200,
-            'district' => 130203,
-        ]);
+        $form->text('shipping_place', '发货地');
+        $form->file('video.fdMp4','视频');
         $form->currency('price','单价')->symbol('￥');
         $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张');
-        $form->saving(function (Form $form) {
-            $area = ChinaArea::with('city','province')->where('code', $form->district_id)->first();
-            if ($area) {
-                $form->model()->shipping_place = $area->province->name . '-' . $area->city->name . '-' .$area->name;
-            }
-
-        });
 
         return $form;
     }

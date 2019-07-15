@@ -14,7 +14,9 @@ Route::group([
     $router->resource('goods', GoodsController::class);
     $router->resource('categories', CategoryController::class);
     $router->resource('orders', OrderController::class);
+    $router->get('order/print', 'OrderController@print')->name('admin.order.print');
     $router->resource('order-items', OrderItemController::class);
+    $router->resource('banners', BannerController::class);
     $router->get('order/update-status/{id}', 'OrderController@updateStatus')->name('admin.order.update-status');
 
 });

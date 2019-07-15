@@ -9,6 +9,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 
 class OrderController extends Controller
 {
@@ -115,15 +116,18 @@ class OrderController extends Controller
                         break;
             }
             if ($btn_name) {
-                $actions->append('<a class="btn btn-xs btn-info" style="margin:8px;" href="' . route('admin.order.update-status',
+                $actions->append('<a class="btn btn-xs btn-info" style="margin:4px;" href="' . route('admin.order.update-status',
                         ['id' => $actions->getKey(),'status'=>$status]) . '">' . $btn_name . '</a>');
             }
 
-            $actions->append('<a onclick="return confirm(\'确定取消订单?\')" style="margin:8px;" class="btn btn-xs btn-danger" href="' . route('admin.order.update-status',
-                    ['id' => $actions->getKey(),'status'=>Order::STATUS_CANCEL]) . '">取消订单</a>');
+            $actions->append('<a  target="_blank"  class="btn btn-xs btn-info" style="margin:4px;" href="' . route('admin.order.print',
+                    ['id' => $actions->getKey()]) . '">订单打印</a>');
+
             // prepend一个操作
-            $actions->append('<a class="btn btn-xs btn-success" style="margin:8px;" href="' . route('order-items.index',
+            $actions->append('<a class="btn btn-xs btn-success" style="margin:4px;" href="' . route('order-items.index',
                     ['order_id' => $actions->getKey()]) . '">订单详情</a>');
+            $actions->append('<a onclick="return confirm(\'确定取消订单?\')" style="margin:4px;" class="btn btn-xs btn-danger" href="' . route('admin.order.update-status',
+                    ['id' => $actions->getKey(),'status'=>Order::STATUS_CANCEL]) . '">取消订单</a>');
 
         });
 
@@ -191,16 +195,16 @@ class OrderController extends Controller
 
 
         $grid->comments('备注');
-        $grid->column('orderItem', '详情')->display(function ($orderItem) {
-            $order = Order::with([
-                'orderItem' => function ($query) {
-                    $query->select('id as ID', 'order_id as order_id', 'name as 商品名称', 'price as 单价', 'quantity as 重量');
-                },
-            ])->find($this->id);
-
-            return $order->orderItem->toArray();
-
-        })->table();
+        //$grid->column('orderItem', '详情')->display(function ($orderItem) {
+        //    $order = Order::with([
+        //        'orderItem' => function ($query) {
+        //            $query->select('id as ID', 'order_id as order_id', 'name as 商品名称', 'price as 单价', 'quantity as 重量');
+        //        },
+        //    ])->find($this->id);
+        //
+        //    return $order->orderItem->toArray();
+        //
+        //})->table();
         $grid->status('订单状态')->using(Order::STATUS_NAME)->sortable();
         $grid->created_at('创建时间')->sortable();
         $grid->updated_at('更新时间')->sortable();
@@ -216,5 +220,11 @@ class OrderController extends Controller
         ]);
         admin_toastr('提交成功', 'success');
         return back();
+    }
+
+    public function print()
+    {
+        $order = Order::with('orderItem')->find(request()->get('id'));
+        return view('order.print',compact('order'));
     }
 }
