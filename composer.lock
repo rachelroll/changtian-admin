@@ -1002,7 +1002,7 @@
             "version": "4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "url": "https://github.com/vinkla/hashids.git",
                 "reference": "43bb2407f16a631f0128f47bcb67ff986c63dde2"
             },
             "dist": {
@@ -1275,16 +1275,16 @@
         },
         {
             "name": "jxlwqq/simditor",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jxlwqq/simditor.git",
-                "reference": "f7f50c6d976db030df50737c4bb864199a159b3d"
+                "url": "https://github.com/laravel-admin-extensions/simditor.git",
+                "reference": "6f0c5459d61f8c235ef92807ac59417664f1a754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github-api-proxy.cnpkg.org/repos/jxlwqq/simditor/zipball/f7f50c6d976db030df50737c4bb864199a159b3d",
-                "reference": "f7f50c6d976db030df50737c4bb864199a159b3d",
+                "url": "https://github-api-proxy.cnpkg.org/repos/laravel-admin-extensions/simditor/zipball/6f0c5459d61f8c235ef92807ac59417664f1a754",
+                "reference": "6f0c5459d61f8c235ef92807ac59417664f1a754",
                 "shasum": ""
             },
             "require": {
@@ -1323,7 +1323,7 @@
                 "extension",
                 "laravel-admin"
             ],
-            "time": "2018-09-22T08:06:36+00:00"
+            "time": "2019-07-13T14:03:45+00:00"
         },
         {
             "name": "laravel-admin-ext/china-distpicker",

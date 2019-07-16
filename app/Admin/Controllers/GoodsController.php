@@ -100,11 +100,26 @@ class GoodsController extends Controller
         $grid->name('商品名称')->editable();
         $grid->kind('品种')->editable();
         $grid->size('规格与包装')->editable();
+
         $grid->shipping_date('自由描述')->editable();
         $grid->shipping_place('发货地');
         $grid->price('单价')->editable();
         $grid->pictures('商品图片')->lightbox(['width' => 100]);
         $grid->column('category.name' ,'分类');
+
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '上架', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '下架', 'color' => 'danger'],
+        ];
+        $grid->column('enabled','上架下架')->switch($states);
+
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+        ];
+        $grid->column('is_source','是否溯源展示')->switch($states);
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
 
@@ -152,6 +167,21 @@ class GoodsController extends Controller
         $form->textarea('intro', '商品简介');
         $form->text('kind', '品种')->rules('required',['required'=>'必填']);
         $form->text('size', '规格与包装');
+
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '上架', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '下架', 'color' => 'danger'],
+        ];
+        $form->switch('enabled', '上架下架')->states($states);
+
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+        ];
+        $form->switch('is_source', '是否溯源展示')->states($states);
+        $form->simditor('source_content','溯源展示内容');
         $form->text('shipping_date', '最后一行自由描述')->default('订单提交后2日内发货');
         $form->text('shipping_place', '发货地');
         $form->file('video.fdMp4','视频');

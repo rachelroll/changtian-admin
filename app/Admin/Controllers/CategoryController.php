@@ -84,6 +84,13 @@ class CategoryController extends Controller
         $grid->id('Id');
         $grid->name('名称');
         //$grid->icon('Icon');
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '启用', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '禁用', 'color' => 'danger'],
+        ];
+        $grid->column('enabled','启用禁用')->switch($states);
+
         $grid->icon('图标')->lightbox(['width' => 100]);
         $grid->order('排序')->orderable();
         $grid->created_at('创建时间');
@@ -122,6 +129,13 @@ class CategoryController extends Controller
     {
         $form = new Form(new Category);
         $form->text('name', '名称');
+
+        $options = [
+            'on'  => ['value' => 1, 'text' => '启用', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '禁用', 'color' => 'danger'],
+        ];
+        $form->switch('enabled', '启用禁用')->states($options);
+
         $form->image('icon','图标');
         //$form->text('icon', '图标');
 
