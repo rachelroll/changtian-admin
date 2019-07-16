@@ -20,7 +20,7 @@
 
 use Encore\Admin\Grid;
 
-Encore\Admin\Form::forget(['map', 'editor']);
+Encore\Admin\Form::forget(['map']);
 Grid::init(function (Grid $grid) {
 
 

@@ -11,6 +11,7 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $file=$request->file('upload_file');
+
         if ($file->isValid()) {
             //$extension=$file->getClientOriginalExtension();
             $path=$file->getRealPath();
@@ -18,15 +19,22 @@ class UploadController extends Controller
             $bool= Storage::disk('oss')->put($filename,file_get_contents($path));
             if ($bool) {
                 return [
-                    'success'   => true,
-                    'msg'       => "成功上传",
-                    'file_path' => env('CDN_DOMAIN') . '/' .$filename,
+                    'data'=>[
+                        'http:'.env('CDN_DOMAIN') . '/' .$filename,
+                    ],
+                    'errno'=>0
+                ];
+                return [
+                    "hash"=> "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                    'key'=>'http:'.env('CDN_DOMAIN') . '/' .$filename,
+                    'errno'=>0,
                 ];
             } else {
                 return [
                     'success'   => false,
                     'msg'       => "上传失败,请联系管理员",
                     'file_path' => '',
+                    'key' => '',
                 ];
             }
         }

@@ -27,7 +27,13 @@ class BannerController extends AdminController
         $grid = new Grid(new Banner);
 
         $grid->column('id', __('ID'));
+        $states = [
+            'on'  => ['value' => 1, 'text' => '启用', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '禁用', 'color' => 'danger'],
+        ];
+        $grid->column('enabled','启用禁用')->switch($states);
         $grid->picUrl('图片')->lightbox(['width' => 100]);
+
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
 
@@ -61,6 +67,11 @@ class BannerController extends AdminController
     {
         $form = new Form(new Banner);
 
+        $options = [
+            'on'  => ['value' => 1, 'text' => '启用', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '禁用', 'color' => 'danger'],
+        ];
+        $form->switch('enabled', '启用禁用')->states($options);
         $form->image('picUrl','图片');
 
         return $form;

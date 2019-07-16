@@ -181,10 +181,13 @@ class GoodsController extends Controller
             'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
         ];
         $form->switch('is_source', '是否溯源展示')->states($states);
-        $form->simditor('source_content','溯源展示内容');
+        $form->file('source_video','溯源视频');
+        $form->editor('source_content');
+        //$form->editor('source_content','溯源展示内容');
+
         $form->text('shipping_date', '最后一行自由描述')->default('订单提交后2日内发货');
         $form->text('shipping_place', '发货地');
-        $form->file('video.fdMp4','视频');
+        $form->file('video.fdMp4','商品视频');
         $form->currency('price','单价')->symbol('￥');
         $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张')->removable();
 
