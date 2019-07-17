@@ -2,14 +2,14 @@
 
 use Illuminate\Routing\Router;
 
-Admin::registerAuthRoutes();
 
+Admin::registerAuthRoutes();
 Route::group([
     'prefix'        => config('admin.route.prefix'),
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-
+    $router->resource('auth/users', 'AdminUserController')->names('admin.auth.users');
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('goods', GoodsController::class);
     $router->resource('categories', CategoryController::class);
@@ -20,4 +20,5 @@ Route::group([
     $router->get('order/update-status/{id}', 'OrderController@updateStatus')->name('admin.order.update-status');
 
 });
+
 
