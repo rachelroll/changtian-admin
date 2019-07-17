@@ -102,6 +102,7 @@ class AdminUserController extends AdminController
 
         $form->text('name', trans('admin.name'))->rules('required');
         $form->text('slogan', '一句话标语')->rules('required');
+        $form->color('slogan_color','标语颜色')->default('#ccc');
         $form->image('avatar', trans('admin.avatar'));
         $form->password('password', trans('admin.password'))->rules('required|confirmed');
         $form->password('password_confirmation', trans('admin.password_confirmation'))->rules('required')
