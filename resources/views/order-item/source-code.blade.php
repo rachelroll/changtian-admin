@@ -62,24 +62,16 @@
     </style>
 </head>
 <body>
-<div class="border box">
+<div class="box">
     <div id="ddd">
+        <h4 class="center">产品追溯标签</h4>
         <div class="center font-24">{{ $orderItem->name }}</div>
-        <div class="left">
-            <div>保鲜期: {{ $orderItem->fresh_time }}</div>
-            <div>特色: {{ $orderItem->feature }}</div>
-        </div>
-        <div class="right" style="margin-left: 40px;">
+        <div class="center">
             <img width="100" src="{{ (new chillerlan\QRCode\QRCode)->render($url) }}" alt=""/>
         </div>
-        <div class="box">
-            <div>溯源地: {{ $orderItem->source_location }}</div>
-            <div>溯源人: {{ $orderItem->source_person }}</div>
-        </div>
-        <div class=" font-24">净含量: {{ $orderItem->net_weight }}</div>
-
-        <div>供应商:宁夏昌田农业发展有限公司</div>
-        <div>热线:400-666-8683</div>
+        <div class="center">请使用微信扫码，体验可追溯产品</div>
+        <div class="center">供应商:宁夏昌田农业发展有限公司</div>
+        <div class="center">热线:400-666-8683</div>
     </div>
 </div>
 <br>

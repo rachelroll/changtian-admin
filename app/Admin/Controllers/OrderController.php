@@ -116,7 +116,7 @@ class OrderController extends Controller
                         break;
             }
             if ($btn_name) {
-                $actions->append('<a class="btn btn-xs btn-info" style="margin:4px;" href="' . route('admin.order.update-status',
+                $actions->append('<a onclick="return confirm(\'确定操作?\')" class="btn btn-xs btn-info" style="margin:4px;" href="' . route('admin.order.update-status',
                         ['id' => $actions->getKey(),'status'=>$status]) . '">' . $btn_name . '</a>');
             }
 

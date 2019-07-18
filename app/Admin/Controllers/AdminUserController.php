@@ -31,7 +31,7 @@ class AdminUserController extends AdminController
         $grid->column('id', 'ID')->sortable();
         $grid->column('username', trans('admin.username'));
         $grid->column('name', trans('admin.name'));
-        $grid->column('slogan', '一句话标语')->editable();
+        $grid->slogan('一句话标语')->lightbox(['width' => 100]);
         $grid->column('roles', trans('admin.roles'))->pluck('name')->label();
         $grid->column('created_at', trans('admin.created_at'));
         $grid->column('updated_at', trans('admin.updated_at'));
@@ -101,8 +101,9 @@ class AdminUserController extends AdminController
             ->updateRules(['required', "unique:{$connection}.{$userTable},username,{{id}}"]);
 
         $form->text('name', trans('admin.name'))->rules('required');
-        $form->text('slogan', '一句话标语')->rules('required');
-        $form->color('slogan_color','标语颜色')->default('#ccc');
+        //$form->image('slogan', '一句话标语');
+        $form->cropper('slogan', '一句话标语');
+        //$form->color('slogan_color','标语颜色')->default('#ccc');
         $form->image('avatar', trans('admin.avatar'));
         $form->password('password', trans('admin.password'))->rules('required|confirmed');
         $form->password('password_confirmation', trans('admin.password_confirmation'))->rules('required')

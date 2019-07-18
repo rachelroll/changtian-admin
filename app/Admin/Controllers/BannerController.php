@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Banner;
+use App\Good;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -24,6 +25,8 @@ class BannerController extends AdminController
      */
     protected function grid()
     {
+        $goods = Good::where('enabled', 1)->pluck('name','id')->toArray();
+        $goods_options =   [0=>'请选择'] + $goods;
         $grid = new Grid(new Banner);
 
         $grid->column('id', __('ID'));
@@ -33,6 +36,7 @@ class BannerController extends AdminController
         ];
         $grid->column('enabled','启用禁用')->switch($states);
         $grid->picUrl('图片')->lightbox(['width' => 100]);
+        $grid->column('goods_id','选择跳转商品')->select($goods_options);
 
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
@@ -65,12 +69,15 @@ class BannerController extends AdminController
      */
     protected function form()
     {
+        $goods = Good::where('enabled', 1)->pluck('name','id')->toArray();
+        $goods_options =   [0=>'请选择'] + $goods;
         $form = new Form(new Banner);
 
         $options = [
             'on'  => ['value' => 1, 'text' => '启用', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => '禁用', 'color' => 'danger'],
         ];
+        $form->select('goods_id','跳转商品')->options($goods_options);
         $form->switch('enabled', '启用禁用')->states($options);
         $form->image('picUrl','图片');
 
