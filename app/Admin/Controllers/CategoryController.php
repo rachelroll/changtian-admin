@@ -136,7 +136,7 @@ class CategoryController extends Controller
         ];
         $form->switch('enabled', '启用禁用')->states($options);
 
-        $form->image('icon','图标');
+        $form->image('icon','图标')->retainable();
         //$form->text('icon', '图标');
 
         return $form;

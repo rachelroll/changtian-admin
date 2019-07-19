@@ -79,7 +79,7 @@ class BannerController extends AdminController
         ];
         $form->select('goods_id','跳转商品')->options($goods_options);
         $form->switch('enabled', '启用禁用')->states($options);
-        $form->image('picUrl','图片');
+        $form->image('picUrl','图片')->retainable();
 
         return $form;
     }

@@ -189,7 +189,7 @@ class GoodsController extends Controller
         $form->text('shipping_place', '发货地');
         $form->file('video.fdMp4','商品视频');
         $form->currency('price','单价')->symbol('￥');
-        $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张')->removable();
+        $form->multipleImage('pictures', '商品图片')->help('可以一次性选择多张')->removable()->retainable();
 
         return $form;
     }
