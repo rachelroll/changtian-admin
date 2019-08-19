@@ -99,6 +99,7 @@ class GoodsController extends Controller
         $grid->id('Id');
         $grid->name('商品名称')->editable();
         $grid->kind('品种')->editable();
+        $grid->order('排序')->orderable();
         $grid->size('规格与包装')->editable();
 
         $grid->shipping_date('自由描述')->editable();
@@ -122,7 +123,7 @@ class GoodsController extends Controller
         $grid->column('is_source','是否溯源展示')->switch($states);
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
-
+        $grid->model()->orderBy('order','ASC');
 
 
         return $grid;
@@ -166,7 +167,7 @@ class GoodsController extends Controller
         $form->select('category_id', '分类')->options(Category::orderBy('order','ASC')->pluck('name','id'));
         $form->textarea('intro', '商品简介');
         $form->text('kind', '品种')->rules('required',['required'=>'必填']);
-        $form->text('size', '规格与包装');
+        $form->text('size', '规格与包装')->rules('required',['required'=>'必填']);
 
         // 设置text、color、和存储值
         $states = [
@@ -182,7 +183,7 @@ class GoodsController extends Controller
         ];
         $form->switch('is_source', '是否溯源展示')->states($states);
         $form->file('source_video','溯源视频');
-        $form->editor('source_content');
+        $form->editor('source_content','溯源内容');
         //$form->editor('source_content','溯源展示内容');
 
         $form->text('shipping_date', '最后一行自由描述')->default('订单提交后2日内发货');
