@@ -173,7 +173,12 @@ class OrderController extends Controller
         $form->text('username', '客户名字');
 
         $form->text('contact', '客户联系方式');
-        $form->text('address', '邮寄地址');
+
+        $form->display('province', '省');
+        $form->display('city', '市');
+        $form->display('district', '区');
+
+        $form->text('address', '详细地址');
         $form->text('comments', '备注');
         $form->text('express_number', '物流编号');
         $form->text('express_name', '物流公司');
@@ -191,7 +196,10 @@ class OrderController extends Controller
         $grid->amount('订单总金额')->sortable();
         $grid->username('客户名字')->sortable();
         $grid->contact('客户联系方式');
-        $grid->address('邮寄地址');
+        $grid->column('province', '省');
+        $grid->column('city', '市');
+        $grid->column('district', '区');
+        $grid->address('详细地址');
 
 
         $grid->comments('备注');

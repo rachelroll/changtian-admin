@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+    protected $appends = [
+        'province',
+        'city',
+        'district',
+    ];
     //订单状态
     const STATUS_WAIT_PAY = 0;  //待支付
     const STATUS_PAID = 1;  //已支付
@@ -31,5 +37,19 @@ class Order extends Model
     public function orderItem()
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+
+
+    public function getProvinceAttribute()
+    {
+        return ChinaArea::where('code', substr($this->provinceId,0,6))->first()->name;
+    }
+    public function getCityAttribute()
+    {
+        return ChinaArea::where('code', substr($this->cityId,0,6))->first()->name;
+    }
+    public function getDistrictAttribute()
+    {
+        return ChinaArea::where('code', substr($this->districtId,0,6))->first()->name;
     }
 }
