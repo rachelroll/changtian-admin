@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97c779c3e6e6ec3d88c0ae95d91dfe73",
+    "content-hash": "0e67642f5713ae3d2c8dcbfb70dbf4a1",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1474,6 +1474,66 @@
                 "laravel-admin"
             ],
             "time": "2019-05-30T07:15:32+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/cropper",
+            "version": "1.0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/cropper.git",
+                "reference": "eaa614c3fd5621eacba961cf284ff822a620aa65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/cropper/zipball/eaa614c3fd5621eacba961cf284ff822a620aa65",
+                "reference": "eaa614c3fd5621eacba961cf284ff822a620aa65",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\Cropper\\CropperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\Cropper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "EVA09",
+                    "email": "940173803@qq.com"
+                }
+            ],
+            "description": "Integrate Cropper into laravel-admin",
+            "homepage": "https://github.com/laravel-admin-extensions/cropper",
+            "keywords": [
+                "cropper",
+                "extension",
+                "image",
+                "laravel-admin"
+            ],
+            "time": "2019-04-03T04:40:07+00:00"
         },
         {
             "name": "laravel-admin-ext/grid-lightbox",
