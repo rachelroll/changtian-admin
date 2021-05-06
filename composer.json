@@ -20,7 +20,7 @@
         "laravel-admin-ext/cropper": "1.0.2.1",
         "laravel-admin-ext/grid-lightbox": "^1.0",
         "laravel-admin-ext/wang-editor": "^1.1",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "6.18.*",
         "laravel/tinker": "^1.0",
         "simplesoftwareio/simple-qrcode": "^2.0",
         "smallruraldog/light-box": "^1.0",
